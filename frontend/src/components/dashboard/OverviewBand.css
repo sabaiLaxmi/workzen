@@ -1,0 +1,101 @@
+.overview-band {
+  display: flex;
+  align-items: center;
+  padding: 0; /* Override default panel padding for custom layout */
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.overview-ring-container {
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--paper); /* slightly different background for the ring section */
+  border-right: 1px solid var(--line);
+}
+
+.overview-svg {
+  transform: rotate(-90deg);
+}
+
+.overview-ring-progress {
+  transition: stroke-dashoffset 600ms ease-out;
+  /* animation will just rely on the style prop injected on render */
+}
+
+.overview-ring-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.overview-stats {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.overview-stat-item {
+  flex: 1;
+  padding: 3rem 2rem;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.overview-stat-item:last-child {
+  border-right: none;
+}
+
+.stat-value {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .overview-band {
+    flex-direction: column;
+  }
+  .overview-ring-container {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .overview-stats {
+    flex-direction: column;
+    width: 100%;
+  }
+  .overview-stat-item {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+    padding: 2rem;
+  }
+  .overview-stat-item:last-child {
+    border-bottom: none;
+  }
+}

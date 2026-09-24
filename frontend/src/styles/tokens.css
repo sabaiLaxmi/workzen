@@ -1,0 +1,13 @@
+:root {
+  /* Colors */
+  --paper: #EDEFEA;
+  --paper-raised: #E3E7DE;
+  --ink: #1C2B2E;
+  --ink-soft: #4B5D5A;
+  --pine: #35544C;
+  --pine-deep: #243A34;
+  --ochre: #C98A3E;
+  --sage: #6B8F71;
+  --brick: #B15C4A;
+  --line: rgba(28,43,46,0.14);
+}

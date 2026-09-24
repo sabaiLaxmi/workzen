@@ -1,0 +1,325 @@
+.home-page {
+  width: 100%;
+  background-image: url('/landing_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: var(--paper); /* Fallback base color */
+}
+
+/* 1. HERO SECTION */
+.hero-section {
+  padding: 6rem 0;
+  min-height: calc(100vh - 73px);
+  display: flex;
+  align-items: center;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-headline {
+  font-family: 'Fraunces', serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subheadline {
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.hero-cta {
+  font-size: 1.125rem;
+  padding: 0.75em 1.5em;
+}
+
+.hero-visual-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-svg {
+  transform: rotate(-90deg);
+}
+
+.hero-ring-progress {
+  stroke-dasharray: 880;
+  stroke-dashoffset: 880;
+  animation: fillRing 600ms ease-out forwards;
+}
+
+@keyframes fillRing {
+  to { stroke-dashoffset: 220; }
+}
+
+/* 2. FEATURES SECTION */
+.features-section {
+  padding: 8rem 0 6rem;
+}
+
+.features-header {
+  margin-bottom: 4rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.feature-card {
+  padding: 2.5rem 2rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.03);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--pine);
+  box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+.feature-icon {
+  margin-bottom: 1.5rem;
+  color: var(--pine);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background-color: var(--paper);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  background-color: var(--pine);
+  color: var(--paper);
+  border-color: var(--pine);
+  transform: scale(1.05);
+}
+
+.feature-heading {
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+
+.feature-text {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 3. HOW IT WORKS */
+.how-it-works-section {
+  padding: 6rem 0 8rem;
+  border-top: 1px solid var(--line);
+  background-color: transparent;
+}
+
+.section-header {
+  text-align: left;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem; /* Center of the 3rem number circle */
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background-color: var(--line);
+  z-index: 1;
+}
+
+.timeline-step {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.step-number {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  color: var(--pine);
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+.step-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.step-text {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-content {
+    margin: 0 auto;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .timeline {
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+  .timeline::before {
+    top: 1.5rem;
+    left: 2.5rem; /* center of the number circle when vertical */
+    width: 1px;
+    height: 100%;
+    right: auto;
+  }
+  
+  .roles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 4. ROLE-BASED CALLOUT */
+.roles-section {
+  padding: 6rem 0;
+  background-color: var(--paper-raised);
+}
+
+.center {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.role-card {
+  padding: 2.5rem;
+  background-color: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.role-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  color: var(--pine);
+  margin-bottom: 1rem;
+}
+
+.role-text {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 5. FINAL CTA BAND */
+.cta-band {
+  background-color: var(--pine-deep);
+  padding: 6rem 0;
+  text-align: center;
+}
+
+.cta-headline {
+  font-family: 'Fraunces', serif;
+  font-size: 2.5rem;
+  color: var(--paper);
+  margin-bottom: 2.5rem;
+}
+
+.cta-btn {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-size: 1.125rem;
+  padding: 0.8em 2em;
+}
+
+.cta-btn:hover {
+  background-color: var(--paper-raised);
+}

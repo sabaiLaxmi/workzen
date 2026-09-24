@@ -1,0 +1,71 @@
+.privacy-page {
+  padding: 4rem 2rem 8rem;
+  background-color: var(--paper);
+}
+
+.reading-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.privacy-header {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2rem;
+}
+
+.privacy-title {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.privacy-updated {
+  color: var(--ink-soft);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.privacy-content h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.75rem;
+  color: var(--pine);
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.privacy-content p, 
+.privacy-content ul {
+  font-size: 1.125rem; /* Larger font size for better reading */
+  line-height: 1.8;   /* Generous line height */
+  color: var(--ink);  /* Slightly darker than ink-soft for long-form reading contrast */
+  margin-bottom: 1.5rem;
+}
+
+.privacy-content ul {
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.privacy-content li {
+  margin-bottom: 0.75rem;
+}
+
+.privacy-content strong {
+  color: var(--pine-deep);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .privacy-title {
+    font-size: 2.5rem;
+  }
+  .privacy-page {
+    padding-top: 2rem;
+  }
+}

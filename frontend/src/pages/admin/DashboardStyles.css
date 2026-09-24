@@ -1,0 +1,194 @@
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+
+.dashboard-grid {
+  display: flex;
+  gap: 2rem;
+}
+
+.dashboard-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-column.wide {
+  flex: 2;
+}
+
+.list-panel {
+  flex: 1;
+  padding: 0 !important; /* Remove standard panel padding for edge-to-edge rows */
+}
+
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.data-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.hairline-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.hairline-row:last-child {
+  border-bottom: none;
+}
+
+.row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.row-title {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
+.text-muted {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.row-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.small {
+  padding: 0.4em 0.8em;
+  font-size: 0.85rem;
+}
+
+.team-row .progress-bar-container {
+  flex: 1;
+  margin: 0 1.5rem;
+  height: 6px;
+  background-color: var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--pine);
+  border-radius: 4px;
+}
+
+.quick-action-box {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  gap: 1.5rem;
+}
+
+.action-btn {
+  font-size: 1.1rem;
+  padding: 0.8em 1.5em;
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    flex-direction: column;
+  }
+}
+
+/* Pill and Button Variants */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.pill-sage {
+  background-color: rgba(181, 191, 161, 0.2); /* var(--sage) transparent */
+  color: #4a5c32;
+}
+.pill-brick {
+  background-color: rgba(193, 85, 77, 0.15); /* var(--brick) transparent */
+  color: var(--brick);
+}
+.pill-pine {
+  background-color: rgba(43, 60, 57, 0.1); /* var(--pine) transparent */
+  color: var(--pine);
+}
+.pill-slate {
+  background-color: rgba(100, 110, 120, 0.15);
+  color: #555;
+}
+.pill-pending {
+  background-color: rgba(225, 172, 70, 0.15); /* var(--ochre) transparent */
+  color: #9c7117;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover {
+  border-color: var(--brick);
+  color: var(--brick);
+  background-color: rgba(193, 85, 77, 0.05);
+}
+.btn-filled {
+  background-color: var(--pine);
+  color: #fff;
+}
+
+/* Password Toggle */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.password-wrapper .form-input {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.password-toggle:hover {
+  color: var(--ink);
+}

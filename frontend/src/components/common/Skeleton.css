@@ -1,0 +1,17 @@
+.skeleton-loader {
+  background-color: var(--paper-raised);
+  border-radius: 4px; /* match max panel radius */
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
