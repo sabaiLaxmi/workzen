@@ -7,6 +7,7 @@ import PublicFooter from './components/layout/PublicFooter'
 import AppLayout from './components/layout/AppLayout'
 import Home from './pages/public/Home'
 import PrivacyPolicy from './pages/public/PrivacyPolicy'
+import Contact from './pages/public/Contact'
 import Login from './pages/public/Login'
 import Register from './pages/public/Register'
 import Dashboard from './pages/dashboard/Dashboard'
@@ -80,6 +81,7 @@ function App() {
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
