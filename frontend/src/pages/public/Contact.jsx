@@ -8,7 +8,10 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Simulate form submission
-    setTimeout(() => setSubmitted(true), 1000);
+    setTimeout(() => {
+      setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+    }, 1000);
   };
 
   const handleChange = (e) => {
