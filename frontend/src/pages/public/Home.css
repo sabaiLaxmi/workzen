@@ -317,8 +317,19 @@
     top: 1.5rem;
     left: 2.5rem; /* center of the number circle when vertical */
     width: 1px;
-    height: 100%;
+    height: calc(100% - 3rem); /* avoid overflowing past the last step */
     right: auto;
+  }
+  .timeline-step {
+    padding-left: 5.5rem;
+    padding-right: 1rem;
+    position: relative;
+  }
+  .step-number {
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    margin-bottom: 0;
   }
   
   .roles-grid {
