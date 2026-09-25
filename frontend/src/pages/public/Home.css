@@ -173,7 +173,7 @@
   margin-top: 5rem;
 }
 
-.timeline::before {
+.timeline::after {
   content: '';
   position: absolute;
   top: 1.5rem; /* Center of the 3rem number circle */
@@ -182,6 +182,23 @@
   height: 1px;
   background-color: var(--line);
   z-index: 1;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 0;
+  height: 2px;
+  background-color: var(--pine);
+  z-index: 2;
+  animation: drawTimelineHorizontal 2.5s ease-in-out forwards;
+}
+
+@keyframes drawTimelineHorizontal {
+  from { width: 0; }
+  to { width: calc(100% - 3rem); }
 }
 
 .timeline-step {
@@ -313,12 +330,20 @@
     gap: 3rem;
     margin-top: 3rem;
   }
-  .timeline::before {
+  .timeline::after {
     top: 1.5rem;
     left: 2.5rem; /* center of the number circle when vertical */
     width: 1px;
     height: calc(100% - 3rem); /* avoid overflowing past the last step */
     right: auto;
+  }
+  .timeline::before {
+    top: 1.5rem;
+    left: 2.5rem;
+    width: 2px;
+    height: 0;
+    right: auto;
+    animation: drawTimelineVertical 2.5s ease-in-out forwards;
   }
   .timeline-step {
     padding-left: 5.5rem;
@@ -335,4 +360,9 @@
   .roles-grid {
     grid-template-columns: 1fr;
   }
+}
+
+@keyframes drawTimelineVertical {
+  from { height: 0; }
+  to { height: calc(100% - 3rem); }
 }
