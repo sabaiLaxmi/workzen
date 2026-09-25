@@ -222,44 +222,7 @@
   margin: 0;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .hero-container {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-content {
-    margin: 0 auto;
-  }
-  .hero-actions {
-    justify-content: center;
-  }
-  .hero-headline {
-    font-size: 2.5rem;
-  }
-  
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
 
-  .timeline {
-    flex-direction: column;
-    gap: 3rem;
-    margin-top: 3rem;
-  }
-  .timeline::before {
-    top: 1.5rem;
-    left: 2.5rem; /* center of the number circle when vertical */
-    width: 1px;
-    height: 100%;
-    right: auto;
-  }
-  
-  .roles-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* 4. ROLE-BASED CALLOUT */
 .roles-section {
@@ -322,4 +285,43 @@
 
 .cta-btn:hover {
   background-color: var(--paper-raised);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-content {
+    margin: 0 auto;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .timeline {
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+  .timeline::before {
+    top: 1.5rem;
+    left: 2.5rem; /* center of the number circle when vertical */
+    width: 1px;
+    height: 100%;
+    right: auto;
+  }
+  
+  .roles-grid {
+    grid-template-columns: 1fr;
+  }
 }
