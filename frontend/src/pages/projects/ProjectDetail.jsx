@@ -132,13 +132,13 @@ export default function ProjectDetail() {
 
   return (
     <div className="dashboard-page">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '1rem 0 2rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', margin: '1rem 0 2rem', gap: '1.5rem' }}>
         <div>
           <button className="btn-ghost small" style={{ marginBottom: '1rem', padding: '0.4rem 0.8rem' }} onClick={() => navigate('/app/projects')}>&larr; Back</button>
-          <h2 className="dashboard-section-title" style={{ margin: 0, fontSize: '2rem' }}>{project.name}</h2>
+          <h2 className="dashboard-section-title" style={{ margin: 0, fontSize: '2rem', wordBreak: 'break-word' }}>{project.name}</h2>
         </div>
         {canManage && !isEditing && (
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
             <button className="btn-ghost" onClick={() => setIsEditing(true)}>Edit Project</button>
             <button className="btn-filled" onClick={openAssignModal}>Assign Employees</button>
           </div>
@@ -182,10 +182,12 @@ export default function ProjectDetail() {
                     <option value="archived">Archived</option>
                   </select>
                 </div>
-                <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-                  <button type="submit" className="btn-filled" disabled={formSubmitting}>Save Changes</button>
-                  <button type="button" className="btn-ghost" onClick={() => setIsEditing(false)}>Cancel</button>
-                  <button type="button" className="btn-ghost" style={{ marginLeft: 'auto', color: 'var(--brick)', borderColor: 'transparent' }} onClick={handleDelete}>Delete Project</button>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '1.5rem', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+                    <button type="submit" className="btn-filled" disabled={formSubmitting}>Save Changes</button>
+                    <button type="button" className="btn-ghost" onClick={() => setIsEditing(false)}>Cancel</button>
+                  </div>
+                  <button type="button" className="btn-ghost" style={{ color: 'var(--brick)', borderColor: 'transparent' }} onClick={handleDelete}>Delete Project</button>
                 </div>
               </form>
             </div>
@@ -195,14 +197,14 @@ export default function ProjectDetail() {
                 <h4 style={{ color: 'var(--ink-soft)', marginBottom: '0.5rem', fontSize: '0.9rem', textTransform: 'uppercase' }}>Description</h4>
                 <p style={{ margin: 0, fontSize: '1.1rem' }}>{project.description || 'No description provided.'}</p>
               </div>
-              <div style={{ display: 'flex', gap: '3rem' }}>
-                <div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3rem' }}>
+                <div style={{ minWidth: '120px' }}>
                   <h4 style={{ color: 'var(--ink-soft)', marginBottom: '0.5rem', fontSize: '0.9rem', textTransform: 'uppercase' }}>Status</h4>
                   <span className={`pill ${project.status === 'active' ? 'pill-pine' : project.status === 'completed' ? 'pill-sage' : 'pill-slate'}`} style={{ fontSize: '1rem' }}>
                     {project.status}
                   </span>
                 </div>
-                <div>
+                <div style={{ minWidth: '120px' }}>
                   <h4 style={{ color: 'var(--ink-soft)', marginBottom: '0.5rem', fontSize: '0.9rem', textTransform: 'uppercase' }}>Manager</h4>
                   <p style={{ margin: 0, fontWeight: '500' }}>{project.manager?.name || 'Unknown'}</p>
                 </div>
@@ -266,7 +268,7 @@ export default function ProjectDetail() {
               )}
             </div>
             
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'flex-end' }}>
               <button type="button" className="btn-ghost" onClick={() => setIsAssignModalOpen(false)} disabled={formSubmitting}>Cancel</button>
               <button type="submit" className="btn-filled" disabled={formSubmitting}>
                 {formSubmitting ? 'Saving...' : 'Save Assignments'}
