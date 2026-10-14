@@ -63,8 +63,14 @@ export default function EmployeeDashboard() {
             ) : (
               <div className="data-list">
                 {myProjects.length === 0 ? (
-                  <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--ink-soft)' }}>
-                    No projects assigned to you yet.
+                  <div style={{ padding: '2rem 1rem', textAlign: 'center', color: 'var(--ink-soft)' }}>
+                    <div style={{ fontSize: '1.75rem', marginBottom: '0.4rem' }}>📁</div>
+                    <strong style={{ display: 'block', color: 'var(--ink)', marginBottom: '0.25rem', fontSize: '1rem' }}>
+                      No Projects Assigned
+                    </strong>
+                    <span style={{ fontSize: '0.9rem', lineHeight: '1.4', display: 'block', maxWidth: '340px', margin: '0 auto' }}>
+                      You haven't been added to any active projects yet. Ask your manager to assign you to a project team.
+                    </span>
                   </div>
                 ) : (
                   myProjects.map(proj => (

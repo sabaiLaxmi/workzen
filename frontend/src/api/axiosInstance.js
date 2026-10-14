@@ -46,10 +46,19 @@ axiosInstance.interceptors.response.use(
   (error) => {
     endRequest();
     if (error.response && error.response.status === 401) {
-      // Clear token and redirect to login
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.location.href = '/login';
+      const url = error.config?.url || '';
+      const isAuthEndpoint = url.includes('/api/auth/login') || url.includes('/api/auth/register');
+
+      // Do NOT redirect or clear storage on login/register attempt failures
+      if (!isAuthEndpoint) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        
+        // Only redirect to login if currently on a protected route
+        if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/') {
+          window.location.href = '/login';
+        }
+      }
     }
     return Promise.reject(error);
   }

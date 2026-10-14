@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import axiosInstance from '../../api/axiosInstance';
 import './Auth.css';
 
 export default function Register() {
+  const location = useLocation();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(location.state?.email || '');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('employee');
+  const role = 'employee';
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -58,20 +59,6 @@ export default function Register() {
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="role" className="form-label">Role</label>
-            <select 
-              id="role" 
-              className="form-input" 
-              value={role}
-              onChange={(e) => { setRole(e.target.value); setError(''); }}
-              disabled={loading}
-            >
-              <option value="employee">Employee</option>
-              <option value="manager">Manager</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
 
           <div className="form-group">
             <label htmlFor="email" className="form-label">Email address</label>

@@ -38,7 +38,12 @@ const approveTimesheet = async (req, res) => {
 const rejectTimesheet = async (req, res) => {
   try {
     const timesheetId = req.params.id;
-    const { notes } = req.body;
+    const reason = req.body.reason || req.body.notes;
+
+    if (!reason || !reason.trim()) {
+      return res.status(400).json({ message: 'Reason for rejection is required.' });
+    }
+
     const timesheet = await Timesheet.findById(timesheetId).populate('project');
 
     if (!timesheet) {
@@ -55,12 +60,10 @@ const rejectTimesheet = async (req, res) => {
     }
 
     timesheet.status = 'rejected';
-    if (notes) timesheet.notes = notes;
+    timesheet.rejectionReason = reason.trim();
     await timesheet.save();
 
-    const details = notes 
-      ? `Timesheet ${timesheet._id} rejected for project ${timesheet.project.name}. Notes: ${notes}`
-      : `Timesheet ${timesheet._id} rejected for project ${timesheet.project.name}`;
+    const details = `Timesheet ${timesheet._id} rejected for project ${timesheet.project.name}. Reason: ${timesheet.rejectionReason}`;
 
     await ActivityLog.create({
       userId: req.user._id,
@@ -68,7 +71,7 @@ const rejectTimesheet = async (req, res) => {
       details
     });
 
-    res.json({ message: 'Timesheet rejected', timesheet });
+    res.json({ message: 'Timesheet rejected successfully', timesheet });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

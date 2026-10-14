@@ -52,6 +52,7 @@ export default function Users() {
       setFormData({ name: '', email: '', password: '', role: 'employee' });
       setEditingUserId(null);
       fetchUsers();
+      window.dispatchEvent(new Event('user-role-changed'));
     } catch (err) {
       const errorMessage = err.response?.data?.message || 
                            (err.response?.data?.errors ? err.response.data.errors.map(e => e.msg).join(', ') : `Failed to ${editingUserId ? 'update' : 'create'} user.`);

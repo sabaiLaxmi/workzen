@@ -13,7 +13,13 @@ router.put(
   protect,
   authorize('admin', 'manager'),
   [
-    body('notes', 'Notes are required when rejecting').not().isEmpty(),
+    body().custom((val, { req }) => {
+      const reason = req.body?.reason || req.body?.notes;
+      if (!reason || !reason.trim()) {
+        throw new Error('A reason for rejection is required');
+      }
+      return true;
+    }),
   ],
   validate,
   rejectTimesheet

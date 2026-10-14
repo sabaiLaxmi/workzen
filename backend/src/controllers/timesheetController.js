@@ -110,14 +110,20 @@ const editTimesheet = async (req, res, next) => {
       return res.status(403).json({ message: 'Not authorized to edit this timesheet' });
     }
 
-    // Only allow editing if pending
-    if (timesheet.status !== 'pending') {
-      return res.status(400).json({ message: 'Can only edit pending timesheets' });
+    // Allow editing if pending or rejected (resubmission)
+    if (timesheet.status !== 'pending' && timesheet.status !== 'rejected') {
+      return res.status(400).json({ message: 'Can only edit pending or rejected timesheets' });
     }
 
     const { hours, notes } = req.body;
     if (hours !== undefined) timesheet.hours = hours;
     if (notes !== undefined) timesheet.notes = notes;
+
+    // Reset status to pending and clear previous rejectionReason upon edit
+    if (timesheet.status === 'rejected') {
+      timesheet.status = 'pending';
+      timesheet.rejectionReason = '';
+    }
 
     const updatedTimesheet = await timesheet.save();
     res.json(updatedTimesheet);
@@ -141,8 +147,8 @@ const deleteTimesheet = async (req, res, next) => {
       return res.status(403).json({ message: 'Not authorized to delete this timesheet' });
     }
 
-    if (timesheet.status !== 'pending') {
-      return res.status(400).json({ message: 'Can only delete pending timesheets' });
+    if (timesheet.status !== 'pending' && timesheet.status !== 'rejected') {
+      return res.status(400).json({ message: 'Can only delete pending or rejected timesheets' });
     }
 
     await timesheet.deleteOne();

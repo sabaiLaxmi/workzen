@@ -7,6 +7,7 @@ import PublicFooter from './components/layout/PublicFooter'
 import AppLayout from './components/layout/AppLayout'
 import Home from './pages/public/Home'
 import PrivacyPolicy from './pages/public/PrivacyPolicy'
+import TermsOfService from './pages/public/TermsOfService'
 import Contact from './pages/public/Contact'
 import Login from './pages/public/Login'
 import Register from './pages/public/Register'
@@ -21,15 +22,23 @@ import Users from './pages/admin/Users'
 import ActivityLog from './pages/admin/ActivityLog'
 import './index.css'
 
+import { useAuth } from './hooks/useAuth'
+
 function RouteTracker() {
   const location = useLocation();
+  const { refreshUser } = useAuth();
+
   useEffect(() => {
     window.dispatchEvent(new Event('api-request-start'));
+    if (localStorage.getItem('token') && location.pathname.startsWith('/app')) {
+      refreshUser();
+    }
     const timer = setTimeout(() => {
       window.dispatchEvent(new Event('api-request-end'));
     }, 400); // Simulate network latency for route change
     return () => clearTimeout(timer);
-  }, [location.pathname]);
+  }, [location.pathname, refreshUser]);
+
   return null;
 }
 
@@ -44,15 +53,19 @@ function PublicLayout() {
 }
 
 function App() {
-  const [appLoading, setAppLoading] = useState(true);
+  const [appLoading, setAppLoading] = useState(() => {
+    return !sessionStorage.getItem('workzen_splash_shown');
+  });
 
   useEffect(() => {
-    // Show splash screen for 2 seconds on initial load
-    const timer = setTimeout(() => {
-      setAppLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+    if (appLoading) {
+      const timer = setTimeout(() => {
+        setAppLoading(false);
+        sessionStorage.setItem('workzen_splash_shown', 'true');
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [appLoading]);
 
   if (appLoading) {
     return (
@@ -81,6 +94,7 @@ function App() {
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

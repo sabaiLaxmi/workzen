@@ -14,16 +14,21 @@ const registerUser = async (req, res, next) => {
 
     const { name, email, password, role } = req.body;
 
-    const userExists = await User.findOne({ email });
+    const normalizedEmail = email ? email.toLowerCase().trim() : '';
+
+    const userExists = await User.findOne({ email: normalizedEmail });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
+    // Public signup is strictly for employee role
+    const assignedRole = 'employee';
+
     const user = await User.create({
-      name,
-      email,
+      name: name ? name.trim() : '',
+      email: normalizedEmail,
       password,
-      role: role || 'employee',
+      role: assignedRole,
     });
 
     if (user) {
@@ -53,20 +58,38 @@ const loginUser = async (req, res, next) => {
     }
 
     const { email, password } = req.body;
+    const normalizedEmail = email ? email.toLowerCase().trim() : '';
 
-    const user = await User.findOne({ email });
-
-    if (user && (await comparePassword(password, user.password))) {
-      res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        token: generateToken(user._id, user.role),
+    // Check if user exists in database
+    const user = await User.findOne({ email: normalizedEmail });
+    if (!user) {
+      return res.status(404).json({
+        code: 'USER_NOT_FOUND',
+        message: 'No account found with this email. Please sign up first.',
       });
-    } else {
-      res.status(401).json({ message: 'Invalid email or password' });
     }
+
+    // Verify password (also allow trimmed fallback for accidental copy-paste whitespace)
+    let isMatch = await comparePassword(password, user.password);
+    if (!isMatch && typeof password === 'string' && password.trim() !== password) {
+      isMatch = await comparePassword(password.trim(), user.password);
+    }
+
+    if (!isMatch) {
+      return res.status(401).json({
+        code: 'WRONG_PASSWORD',
+        message: 'Wrong password. Please try again.',
+      });
+    }
+
+    // User authenticated - return user data with assigned DB role and token
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token: generateToken(user._id, user.role),
+    });
   } catch (error) {
     next(error);
   }

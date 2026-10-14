@@ -75,7 +75,7 @@ export default function MyTimesheets() {
         notes: editData.notes
       });
       setEditModalOpen(false);
-      showToast('Timesheet updated successfully');
+      showToast(selectedTimesheet.status === 'rejected' ? 'Timesheet corrected & resubmitted for approval' : 'Timesheet updated successfully');
       fetchTimesheets();
     } catch (err) {
       setActionError(err.response?.data?.message || 'Failed to update timesheet');
@@ -153,14 +153,34 @@ export default function MyTimesheets() {
                         "{ts.notes}"
                       </div>
                     )}
+                    {ts.status === 'rejected' && ts.rejectionReason && (
+                      <div style={{
+                        marginTop: '0.5rem',
+                        padding: '0.5rem 0.75rem',
+                        backgroundColor: 'rgba(177, 92, 74, 0.08)',
+                        borderLeft: '3px solid var(--brick)',
+                        borderRadius: '4px',
+                        fontSize: '0.85rem'
+                      }}>
+                        <strong style={{ color: 'var(--brick)' }}>Manager Feedback:</strong> {ts.rejectionReason}
+                      </div>
+                    )}
                   </div>
                   <div className="row-actions" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    {ts.status === 'pending' && (
+                    {(ts.status === 'pending' || ts.status === 'rejected') && (
                       <div style={{ display: 'flex', gap: '0.5rem' }}>
-                        <button className="btn-ghost" style={{ padding: '0.25rem 0.75rem', fontSize: '0.85rem' }} onClick={() => openEditModal(ts)}>
-                          Edit
+                        <button 
+                          className="btn-ghost" 
+                          style={{ padding: '0.25rem 0.75rem', fontSize: '0.85rem' }} 
+                          onClick={() => openEditModal(ts)}
+                        >
+                          {ts.status === 'rejected' ? 'Fix & Resubmit' : 'Edit'}
                         </button>
-                        <button className="btn-ghost" style={{ padding: '0.25rem 0.75rem', fontSize: '0.85rem', color: 'var(--brick)', borderColor: 'transparent' }} onClick={() => openDeleteModal(ts)}>
+                        <button 
+                          className="btn-ghost" 
+                          style={{ padding: '0.25rem 0.75rem', fontSize: '0.85rem', color: 'var(--brick)', borderColor: 'transparent' }} 
+                          onClick={() => openDeleteModal(ts)}
+                        >
                           Delete
                         </button>
                       </div>

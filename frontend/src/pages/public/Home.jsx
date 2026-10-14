@@ -161,7 +161,7 @@ export default function Home() {
         </div>
       </section>
       {/* 4. ROLE-BASED CALLOUT */}
-      <section className="roles-section">
+      <section id="roles" className="roles-section">
         <div className="container">
           <div className="section-header center">
             <h2 className="section-title">Built for everyone</h2>

@@ -30,6 +30,11 @@ const timesheetSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  rejectionReason: {
+    type: String,
+    trim: true,
+    default: '',
+  },
 }, {
   timestamps: true,
 });
